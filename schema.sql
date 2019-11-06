@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS patients;
 DROP TABLE IF EXISTS roles;
@@ -12,14 +11,13 @@ CREATE TABLE users (
     job varchar(15),
     f_name varchar(25),
     l_name varchar(25),
-    email varchar(50),
+    email varchar(50) UNIQUE,
     phone  char(10),
     user_password varchar(25),
     dob date
 );
 
 CREATE TABLE patients (
-    patient_id bigint AUTO_INCREMENT PRIMARY KEY,
     user_id integer REFERENCES users(user_id),
     group_id integer REFERENCES groups(group_id),
     admission_date date,
@@ -45,7 +43,7 @@ CREATE TABLE employees (
 CREATE TABLE reg_approval (
     f_name varchar(25) REFERENCES users(f_name),
     l_name varchar(25) REFERENCES users(l_name),
-    job varchar(25) REFERENCES jobs(job),
+    job varchar(25) REFERENCES jobs(job)
 );
 
 CREATE TABLE rosters (
@@ -58,7 +56,7 @@ CREATE TABLE rosters (
     care_giver_3 varchar(25) REFERENCES users(f_name),
     patient_group_3 varchar(25) REFERENCES groups(group_id),
     care_giver_4 varchar(25) REFERENCES users(f_name),
-    patient_group_4 varchar(25) REFERENCES groups(group_id),
+    patient_group_4 varchar(25) REFERENCES groups(group_id)
 );
 
 CREATE TABLE appointments (
@@ -68,5 +66,5 @@ CREATE TABLE appointments (
     morning_med boolean,
     afternoon_med boolean,
     night_med boolean,
-    doctor_id REFERENCES employees(employee_id)
+    doctor_id integer REFERENCES employees(employee_id)
 );
