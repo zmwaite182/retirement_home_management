@@ -68,3 +68,5 @@ CREATE TABLE appointments (
     night_med boolean,
     doctor_id integer REFERENCES employees(employee_id)
 );
+
+INSERT INTO users (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', 'admin', '2015-10-10');

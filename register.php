@@ -1,5 +1,6 @@
 <?php
   include_once 'db.php';
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -45,13 +46,10 @@
       $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth');";
       mysqli_query($conn, $sql);
 
-      //further optimize selection in the future
       $get_id = "SELECT user_id FROM users WHERE email = '$email';";
       $user_id= mysqli_query($conn, $get_id);
       while($row = mysqli_fetch_assoc($user_id)) {
-        foreach ($row as $value) {
-          $_SESSION['user_id'] = $value;
-        }
+          $_SESSION['user_id'] = $row['user_id'];
       }
 
       if ($role == "patient") {
