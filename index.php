@@ -32,7 +32,6 @@
     } elseif ($_SESSION['job'] == 'supervisor') {
         
     }
-    echo $_SESSION['job'] ?? 'NO JOB';
 ?>
     <button name="<?php session_unset(); ?>">UNSET</button>
 </body>
