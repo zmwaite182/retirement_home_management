@@ -1,5 +1,6 @@
 <?php
   include_once 'db.php';
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -45,13 +46,10 @@
       $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth');";
       mysqli_query($conn, $sql);
 
-      //further optimize selection in the future
       $get_id = "SELECT user_id FROM users WHERE email = '$email';";
       $user_id= mysqli_query($conn, $get_id);
       while($row = mysqli_fetch_assoc($user_id)) {
-        foreach ($row as $value) {
-          $_SESSION['user_id'] = $value;
-        }
+          $_SESSION['user_id'] = $row['user_id'];
       }
 
       if ($role == "patient") {
@@ -62,6 +60,11 @@
           <input type='text' name='relation' placeholder='Relation to Contact'>
           <input type='submit' name='add_info' value='Submit'/>
         </form>";
+      } elseif ($role != "patient" || $role != "family_member") {
+        $user_id = $_SESSION['user_id'];
+        echo $user_id;
+        $sql = "INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('$user_id', '$f_name', '$l_name', '$role');";
+        mysqli_query($conn, $sql);
       }
     }
     if (isset($_POST['add_info'])) {
@@ -74,7 +77,7 @@
       mysqli_query($conn, $sql);
     }
   ?>
-
+<a href="./index.php">Cancel</a>
 
 </body>
 </html>
