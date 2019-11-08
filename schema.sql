@@ -32,12 +32,12 @@ CREATE TABLE roles (
 );
 
 CREATE TABLE employees (
-    employee_id bigint AUTO_INCREMENT PRIMARY KEY,
     user_id integer REFERENCES users(user_id),
     f_name varchar(25) REFERENCES users(fName),
     l_name varchar(25) REFERENCES users(lName),
     job varchar(15) REFERENCES users(job),
-    salary integer
+    salary integer,
+    group_id integer REFERENCES groups(group_id)
 );
 
 CREATE TABLE reg_approval (
@@ -70,3 +70,4 @@ CREATE TABLE appointments (
 );
 
 INSERT INTO users (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', 'admin', '2015-10-10');
+INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('1', 'Zane', 'Witman', 'admin');

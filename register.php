@@ -60,6 +60,11 @@
           <input type='text' name='relation' placeholder='Relation to Contact'>
           <input type='submit' name='add_info' value='Submit'/>
         </form>";
+      } elseif ($role != "patient" || $role != "family_member") {
+        $user_id = $_SESSION['user_id'];
+        echo $user_id;
+        $sql = "INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('$user_id', '$f_name', '$l_name', '$role');";
+        mysqli_query($conn, $sql);
       }
     }
     if (isset($_POST['add_info'])) {
@@ -72,7 +77,7 @@
       mysqli_query($conn, $sql);
     }
   ?>
-
+<a href="./index.php">Cancel</a>
 
 </body>
 </html>
