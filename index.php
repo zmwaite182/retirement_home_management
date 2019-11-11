@@ -42,13 +42,8 @@
 
   } elseif ($_SESSION['job'] == 'admin') {
 
-    echo "
-        <a href='./index.php'>Cancel</a>
-        <h1>Patients</h1>
-        <form method='post'>
-            <input type='text' name='search_p'>
-            <input type='submit' name='search_patients' value='Search Patients'>
-        </form>
+    echo "        
+        <a href='./index.php'>Go Back</a>
     ";
 
     if (isset($_POST['search_patients'])) {
@@ -81,10 +76,45 @@
       }
       echo "</table>";
 
+    } elseif (isset($_POST['search_employees'])) {
+        $search_e = $_POST['search_e'];
+        $sql = "SELECT * FROM users u JOIN employees e ON u.user_id = e.user_id WHERE u.job <> 'patient' AND u.job <> 'family_member' AND u.user_id = '$search_e' OR u.job = '$search_e' OR u.f_name = '$search_e' OR u.l_name = '$search_e' OR e.salary = '$search_e' OR e.group_id = '$search_e';";
+        $searched_employees= mysqli_query($conn, $sql);
+        echo "
+            <table>
+                <tr>
+                <th>User Id</th>
+                <th>Role</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Salary</th>
+                <th>Group</th>
+                </tr>
+          ";
+          while($row = mysqli_fetch_assoc($searched_employees)) {
+              echo "
+                  <tr>
+                  <td>".$row['user_id']."</td>
+                  <td>".$row['job']."</td>
+                  <td>".$row['f_name']."</td>
+                  <td>".$row['l_name']."</td>
+                  <td>".$row['salary']."</td>
+                  <td>".$row['group_id']."</td>
+                  </tr>
+                  ";
+          }
+          echo "</table>";
+
     } else {
         $get_user_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient'";
         $user_details= mysqli_query($conn, $get_user_details);
         echo "
+          <h1>Patients</h1>
+          <form method='post'>
+              <input type='text' name='search_p'>
+              <input type='submit' name='search_patients' value='Search Patients'>
+          </form>
+
           <table>
             <tr>
             <th>First Name</th>
@@ -112,7 +142,7 @@
 
           <h1>Employees</h1>
           <form method='post'>
-              <input type='text'>
+              <input type='text' name='search_e'>
               <input type='submit' name='search_employees' value='Search Employees'>
           </form>
         ";
