@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS reg_approval;
 DROP TABLE IF EXISTS rosters;
 DROP TABLE IF EXISTS appointments;
+DROP TABLE IF EXISTS groups;
 
 CREATE TABLE users (
     user_id bigint AUTO_INCREMENT PRIMARY KEY,
@@ -69,5 +70,10 @@ CREATE TABLE appointments (
     doctor_id integer REFERENCES employees(employee_id)
 );
 
+CREATE TABLE groups (
+    group_id bigint PRIMARY KEY
+);
+
 INSERT INTO users (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', 'admin', '2015-10-10');
 INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('1', 'Zane', 'Witman', 'admin');
+INSERT INTO `groups` (group_id) VALUES ('1'), ('2'), ('3'), ('4');

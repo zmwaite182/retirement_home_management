@@ -1,13 +1,5 @@
 <?php
     session_start();
-    if (ini_get('register_globals'))
-{
-    foreach ($_SESSION as $key=>$value)
-    {
-        if (isset($GLOBALS[$key]))
-            unset($GLOBALS[$key]);
-    }
-}
     include_once 'db.php';
 ?>
 
@@ -19,10 +11,6 @@
 </head>
 <body>
 <?php
-
-  print_r($_SESSION);
-  echo $_SESSION['job'];
-  echo $_SESSION['user_id'];
 
   if (!isset($_SESSION['job'])) {
 
@@ -42,7 +30,7 @@
 
   } elseif ($_SESSION['job'] == 'admin') {
 
-    echo "        
+    echo "
         <a href='./index.php'>Go Back</a>
     ";
 
@@ -124,15 +112,29 @@
                 </tr>
                 ";
         }
-        echo "</table>";
+        echo "</table>
+              <a href='roster.php'>Create Roster</a>
+        ";
 
   } elseif ($_SESSION['job'] == 'doctor') {
 
   } elseif ($_SESSION['job'] == 'caregiver') {
 
   } elseif ($_SESSION['job'] == 'supervisor') {
-
+    echo "<a href='roster.php'>Create Roster</a>";
   }
+
+  echo "
+        <form method='post'>
+          <input type='submit' name='logout' value='logout'>
+        </form>
+       ";
+       if (isset($_POST['logout'])) {
+         session_unset();
+         header('Location: index.php');
+         exit();
+       }
+
 ?>
 </body>
 </html>
