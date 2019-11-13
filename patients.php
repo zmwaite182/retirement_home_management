@@ -6,9 +6,9 @@
   $patient_details= mysqli_query($conn, $get_patient_details);
 
   if (isset($_POST['search_patients_1'])) {
-      $search_p = $_POST['search_p'];
-      $get_patient_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient' AND u.f_name = '$search_p';";
-      $patient_details= mysqli_query($conn, $get_patient_details);
+    $search_p = $_POST['search_p'];
+    $get_patient_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient' AND u.f_name = '$search_p';";
+    $patient_details= mysqli_query($conn, $get_patient_details);
   } elseif (isset($_POST['search_patients_2'])) {
     $search_p = $_POST['search_p'];
     $get_patient_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient' AND u.l_name = '$search_p';";
