@@ -29,6 +29,7 @@
     echo "<h1>Admin's Home</h1>";
     echo "<a href='./patients.php'>View patients</a>";
     echo "<a href='./employees.php'>View employees</a>";
+    echo "<a href='roster.php'>Create Roster</a>";
 
   } elseif ($_SESSION['job'] == 'doctor') {
 
