@@ -48,15 +48,15 @@ CREATE TABLE reg_approval (
 );
 
 CREATE TABLE rosters (
-    supervisor_name varchar(25) REFERENCES users(f_name),
-    doctor_name varchar(25) REFERENCES users(job),
-    care_giver_1 varchar(25) REFERENCES users(f_name),
+    supervisor_id varchar(25) REFERENCES users(user_id),
+    doctor_id varchar(25) REFERENCES users(user_id),
+    care_giver_1 varchar(25) REFERENCES users(user_id),
     patient_group_1 varchar(25) REFERENCES groups(group_id),
-    care_giver_2 varchar(25) REFERENCES users(f_name),
+    care_giver_2 varchar(25) REFERENCES users(user_id),
     patient_group_2 varchar(25) REFERENCES groups(group_id),
-    care_giver_3 varchar(25) REFERENCES users(f_name),
+    care_giver_3 varchar(25) REFERENCES users(user_id),
     patient_group_3 varchar(25) REFERENCES groups(group_id),
-    care_giver_4 varchar(25) REFERENCES users(f_name),
+    care_giver_4 varchar(25) REFERENCES users(user_id),
     patient_group_4 varchar(25) REFERENCES groups(group_id)
 );
 
@@ -74,6 +74,8 @@ CREATE TABLE groups (
     group_id bigint PRIMARY KEY
 );
 
-INSERT INTO users (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', 'admin', '2015-10-10');
+INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', 'admin', '2015-10-10');
 INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('1', 'Zane', 'Witman', 'admin');
 INSERT INTO `groups` (group_id) VALUES ('1'), ('2'), ('3'), ('4');
+-- Mock data \/
+INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('caregiver', 'Zane', 'Witman', 'c@c', '717-666-6666', 'c', '2015-10-10'), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', 'c', '2015-10-10'), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', 'c', '2015-10-10'), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', 'c', '2015-10-10'), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', 'd', '2015-10-10'), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', 's', '2015-10-10');

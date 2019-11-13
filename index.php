@@ -13,9 +13,6 @@
 <?php
 
   if (!isset($_SESSION['job'])) {
-
-// WE ARE LOSING SESSION[JOB] WHEN WE POST TO SEARCH PATIENTS TABLE
-
       echo "
           <form method='post' action='login.php'>
               <input type='submit' name='login' value='Login'>
