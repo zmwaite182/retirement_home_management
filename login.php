@@ -1,13 +1,5 @@
-<?php 
+<?php
     session_start();
-    if (ini_get('register_globals'))
-{
-    foreach ($_SESSION as $key=>$value)
-    {
-        if (isset($GLOBALS[$key]))
-            unset($GLOBALS[$key]);
-    }
-}
     include_once 'db.php';
 ?>
 
@@ -52,7 +44,7 @@
             } else {
                 echo '<p>Incorrect Password</p>';
             }
-        } 
+        }
     ?>
 
     <a href="./index.php">Cancel</a>

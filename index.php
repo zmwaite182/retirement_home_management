@@ -1,13 +1,5 @@
 <?php
     session_start();
-    if (ini_get('register_globals'))
-{
-    foreach ($_SESSION as $key=>$value)
-    {
-        if (isset($GLOBALS[$key]))
-            unset($GLOBALS[$key]);
-    }
-}
     include_once 'db.php';
 ?>
 
@@ -38,14 +30,25 @@
     echo "<a href='./patients.php'>View patients</a>";
     echo "<a href='./employees.php'>View employees</a>";
 
-
   } elseif ($_SESSION['job'] == 'doctor') {
 
   } elseif ($_SESSION['job'] == 'caregiver') {
 
   } elseif ($_SESSION['job'] == 'supervisor') {
-
+    echo "<a href='roster.php'>Create Roster</a>";
   }
+
+  echo "
+        <form method='post'>
+          <input type='submit' name='logout' value='logout'>
+        </form>
+       ";
+       if (isset($_POST['logout'])) {
+         session_unset();
+         header('Location: index.php');
+         exit();
+       }
+
 ?>
 </body>
 </html>
