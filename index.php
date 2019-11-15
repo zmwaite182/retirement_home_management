@@ -22,21 +22,26 @@
           </form>
       ";
   } elseif ($_SESSION['job'] == 'family_member') {
+    echo "<a href='./view_roster.php'>View Roster</a>";
 
   } elseif ($_SESSION['job'] == 'patient') {
-
+    echo "<a href='./view_roster.php'>View Roster</a>";
   } elseif ($_SESSION['job'] == 'admin') {
     echo "<h1>Admin's Home</h1>";
     echo "<a href='./patients.php'>View patients</a>";
     echo "<a href='./employees.php'>View employees</a>";
     echo "<a href='roster.php'>Create Roster</a>";
+    echo "<a href='./view_roster.php'>View Roster</a>";
 
   } elseif ($_SESSION['job'] == 'doctor') {
+    echo "<a href='./view_roster.php'>View Roster</a>";
 
   } elseif ($_SESSION['job'] == 'caregiver') {
+    echo "<a href='./view_roster.php'>View Roster</a>";
 
   } elseif ($_SESSION['job'] == 'supervisor') {
     echo "<a href='roster.php'>Create Roster</a>";
+    echo "<a href='./view_roster.php'>View Roster</a>";
   }
 
   echo "
