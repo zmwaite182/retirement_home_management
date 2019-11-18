@@ -58,7 +58,7 @@
       $birth = $_POST['birth'];
       $role = $_POST['role_selection'];
 
-      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth');";
+      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth', 2);";
       mysqli_query($conn, $sql);
 
       $get_id = "SELECT user_id FROM users WHERE email = '$email';";

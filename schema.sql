@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS patients;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS reg_approval;
 DROP TABLE IF EXISTS rosters;
 DROP TABLE IF EXISTS appointments;
 DROP TABLE IF EXISTS groups;
@@ -15,7 +14,8 @@ CREATE TABLE users (
     email varchar(50) UNIQUE,
     phone  char(10),
     user_password varchar(25),
-    dob date
+    dob date,
+    reg_approval char(1)
 );
 
 CREATE TABLE patients (
@@ -39,12 +39,6 @@ CREATE TABLE employees (
     job varchar(15) REFERENCES users(job),
     salary integer,
     group_id integer REFERENCES groups(group_id)
-);
-
-CREATE TABLE reg_approval (
-    f_name varchar(25) REFERENCES users(f_name),
-    l_name varchar(25) REFERENCES users(l_name),
-    job varchar(25) REFERENCES jobs(job)
 );
 
 CREATE TABLE rosters (
@@ -75,8 +69,8 @@ CREATE TABLE groups (
     group_id bigint PRIMARY KEY
 );
 
-INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', 'admin', '2015-10-10');
+
+-- MOCK DATA
+INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '818-334-1234', 'admin', '2014-11-10', 1), ('caregiver', 'Zach', 'Fitman', 'c@c', '717-666-6666', 'c', '2015-10-10', 2), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', 'c', '2015-10-10', 2), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', 'c', '2015-10-10', 2), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', 'c', '2015-10-10', 2), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', 'd', '2015-10-10', 2), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', 's', '2015-10-10', 2);
 INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('1', 'Zane', 'Witman', 'admin');
 INSERT INTO `groups` (group_id) VALUES ('1'), ('2'), ('3'), ('4');
--- Mock data \/
-INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('caregiver', 'Zane', 'Witman', 'c@c', '717-666-6666', 'c', '2015-10-10'), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', 'c', '2015-10-10'), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', 'c', '2015-10-10'), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', 'c', '2015-10-10'), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', 'd', '2015-10-10'), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', 's', '2015-10-10');
