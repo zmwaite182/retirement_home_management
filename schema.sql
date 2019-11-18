@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS patients;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS reg_approval;
 DROP TABLE IF EXISTS rosters;
 DROP TABLE IF EXISTS appointments;
 DROP TABLE IF EXISTS groups;
@@ -15,7 +14,8 @@ CREATE TABLE users (
     email varchar(50) UNIQUE,
     phone  char(10),
     user_password varchar(255),
-    dob date
+    dob date,
+    reg_approval char(1)
 );
 
 CREATE TABLE patients (
@@ -39,12 +39,6 @@ CREATE TABLE employees (
     job varchar(15) REFERENCES users(job),
     salary integer,
     group_id integer REFERENCES groups(group_id)
-);
-
-CREATE TABLE reg_approval (
-    f_name varchar(25) REFERENCES users(f_name),
-    l_name varchar(25) REFERENCES users(l_name),
-    job varchar(25) REFERENCES jobs(job)
 );
 
 CREATE TABLE rosters (
