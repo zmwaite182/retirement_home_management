@@ -46,13 +46,9 @@ CREATE TABLE rosters (
     supervisor_id varchar(25) REFERENCES users(user_id),
     doctor_id varchar(25) REFERENCES users(user_id),
     care_giver_1 varchar(25) REFERENCES users(user_id),
-    patient_group_1 varchar(25) REFERENCES groups(group_id),
     care_giver_2 varchar(25) REFERENCES users(user_id),
-    patient_group_2 varchar(25) REFERENCES groups(group_id),
     care_giver_3 varchar(25) REFERENCES users(user_id),
-    patient_group_3 varchar(25) REFERENCES groups(group_id),
-    care_giver_4 varchar(25) REFERENCES users(user_id),
-    patient_group_4 varchar(25) REFERENCES groups(group_id)
+    care_giver_4 varchar(25) REFERENCES users(user_id)
 );
 
 CREATE TABLE appointments (
@@ -74,4 +70,4 @@ INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_
 INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('1', 'Zane', 'Witman', 'admin');
 INSERT INTO `groups` (group_id) VALUES ('1'), ('2'), ('3'), ('4');
 -- Mock data \/
-INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('caregiver', 'Zane', 'Witman', 'c@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', '$2y$10$HpsaYH7/4O0s/OYTYaxhE.hMewdb3OUixiKecbMIKyevyrjnlu1Be', '2015-10-10', 2), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', '$2y$10$mmXJleIvQ2MNHs2ceN53nO80Ewh4r9OcvvtEpa0nlgMF.mdMVV0S2', '2015-10-10', 2);
+INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('caregiver', 'Zane', 'Witman', 'c@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', '$2y$10$HpsaYH7/4O0s/OYTYaxhE.hMewdb3OUixiKecbMIKyevyrjnlu1Be', '2015-10-10', 2), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', '$2y$10$mmXJleIvQ2MNHs2ceN53nO80Ewh4r9OcvvtEpa0nlgMF.mdMVV0S2', '2015-10-10', 2);
