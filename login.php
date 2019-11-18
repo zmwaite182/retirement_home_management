@@ -16,7 +16,7 @@
         <label for="email">Email</label>
         <input type="text" name="email" required>
         <label for="password">Password</label>
-        <input type="text" name="password" required>
+        <input type="password" name="password" required>
         <input type="submit" name="grant_access">
     </form>
 
@@ -37,15 +37,11 @@
             }
             if ($correct_password == null) {
                 echo '<p>Incorrect Email</p>';
-            } elseif ($password == $correct_password) {
-                if ($reg_approval != 1) {
-                    echo '<p>User not approved</p>';
-                } else {
-                    $_SESSION['user_id'] = $user_id;
-                    $_SESSION['job'] = $job;
-                    header('Location: index.php');
-                    exit();
-                }
+            } elseif ($password == password_verify($password, $correct_password)) {
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['job'] = $job;
+                header('Location: index.php');
+                exit();
             } else {
                 echo '<p>Incorrect Password</p>';
             }

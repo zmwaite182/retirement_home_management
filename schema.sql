@@ -13,7 +13,7 @@ CREATE TABLE users (
     l_name varchar(25),
     email varchar(50) UNIQUE,
     phone  char(10),
-    user_password varchar(25),
+    user_password varchar(255),
     dob date,
     reg_approval char(1)
 );
@@ -69,8 +69,9 @@ CREATE TABLE groups (
     group_id bigint PRIMARY KEY
 );
 
-
--- MOCK DATA
-INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '818-334-1234', 'admin', '2014-11-10', 1), ('caregiver', 'Zach', 'Fitman', 'c@c', '717-666-6666', 'c', '2015-10-10', 2), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', 'c', '2015-10-10', 2), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', 'c', '2015-10-10', 2), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', 'c', '2015-10-10', 2), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', 'd', '2015-10-10', 2), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', 's', '2015-10-10', 2);
+-- Passwords: admin = 'admin' care1-4 = 'c' doctor = 'd' supervisor = 's'
+INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', '$2y$10$WL.sbnzHlkoodv6hhUbD6ehKYZ3cggoyqKJTYA7DT5Bcazg.l4IHq', '2015-10-10');
 INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('1', 'Zane', 'Witman', 'admin');
 INSERT INTO `groups` (group_id) VALUES ('1'), ('2'), ('3'), ('4');
+-- Mock data \/
+INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('caregiver', 'Zane', 'Witman', 'c@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10'), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10'), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10'), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10'), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', '$2y$10$HpsaYH7/4O0s/OYTYaxhE.hMewdb3OUixiKecbMIKyevyrjnlu1Be', '2015-10-10'), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', '$2y$10$mmXJleIvQ2MNHs2ceN53nO80Ewh4r9OcvvtEpa0nlgMF.mdMVV0S2', '2015-10-10');
