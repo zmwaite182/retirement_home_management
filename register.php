@@ -55,10 +55,11 @@
       $email = $_POST['email'];
       $phone = $_POST['phone'];
       $password = $_POST['password'];
+      $hash_pass = password_hash($password, PASSWORD_DEFAULT);
       $birth = $_POST['birth'];
       $role = $_POST['role_selection'];
 
-      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth');";
+      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$hash_pass', '$birth');";
       mysqli_query($conn, $sql);
 
       $get_id = "SELECT user_id FROM users WHERE email = '$email';";
