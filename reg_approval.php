@@ -1,8 +1,8 @@
-<?php 
+<?php
   session_start();
   include_once 'db.php';
-?>  
-  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,5 +59,6 @@
             }
         ?>
     </table>
+    <a href="./index.php">Go Back</a>    
 </body>
 </html>
