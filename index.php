@@ -30,6 +30,7 @@
     echo "<a href='./patients.php'>View patients</a>";
     echo "<a href='./employees.php'>View employees</a>";
     echo "<a href='roster.php'>Create Roster</a>";
+    echo "<a href='reg_approval.php'>Registration Approval</a>";
 
   } elseif ($_SESSION['job'] == 'doctor') {
 

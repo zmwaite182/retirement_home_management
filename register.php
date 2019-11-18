@@ -14,7 +14,7 @@
 <body>
 
   <form action="" method="post">
-    <select name="role_selection">
+    <select name="role_selection" onchange="checkPatient(this);">
       <option value="none">Select Role</option>
       <option value="patient">Patient</option>
       <option value="family_member">Family Member</option>
@@ -29,6 +29,21 @@
     <input type="tel" name="phone" placeholder="Phone Number">
     <input type="text" name="password" placeholder="Password">
     <input type="date" name="birth" placeholder="Date of Birth">
+    <script>
+        const checkPatient = (select) => {
+            if (select.value == "patient") {
+                document.getElementById('patientInfo').style.display = "block";
+            } else {
+                document.getElementById('patientInfo').style.display = "none";
+            }
+        }
+    </script>
+    <div id="patientInfo" style="display: none;">
+        <input type='text' name='fam_code' placeholder='Family Code'>
+        <input type='text' name='emergency_contact' placeholder='Emergency Contact'>
+        <input type='text' name='relation' placeholder='Relation to Contact'>
+    </div>
+
     <input type="submit" name="create_acc" value="Submit"/>
   </form>
 
@@ -43,7 +58,7 @@
       $birth = $_POST['birth'];
       $role = $_POST['role_selection'];
 
-      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth');";
+      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$password', '$birth', 2);";
       mysqli_query($conn, $sql);
 
       $get_id = "SELECT user_id FROM users WHERE email = '$email';";
@@ -51,29 +66,20 @@
       while($row = mysqli_fetch_assoc($user_id)) {
           $_SESSION['user_id'] = $row['user_id'];
       }
+      $user_id = $_SESSION['user_id'];
 
       if ($role == "patient") {
-        echo
-        "<form action='' method='post'>
-          <input type='text' name='fam_code' placeholder='Family Code'>
-          <input type='text' name='emergency_contact' placeholder='Emergency Contact'>
-          <input type='text' name='relation' placeholder='Relation to Contact'>
-          <input type='submit' name='add_info' value='Submit'/>
-        </form>";
+        $fam_code = $_POST['fam_code'];
+        $emergency_contact = $_POST['emergency_contact'];
+        $relation = $_POST['relation'];
+        $sql = "INSERT INTO `patients` (user_id, family_code, emergency_contact, relation_ec) VALUES ('$user_id', '$fam_code', '$emergency_contact', '$relation');";
+        mysqli_query($conn, $sql);
+
       } elseif ($role != "patient" || $role != "family_member") {
-        $user_id = $_SESSION['user_id'];
         $sql = "INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('$user_id', '$f_name', '$l_name', '$role');";
         mysqli_query($conn, $sql);
       }
-    }
-    if (isset($_POST['add_info'])) {
-      $fam_code = $_POST['fam_code'];
-      $emergency_contact = $_POST['emergency_contact'];
-      $relation = $_POST['relation'];
-      $user_id = $_SESSION['user_id'];
-
-      $sql = "INSERT INTO `patients` (user_id, family_code, emergency_contact, relation_ec) VALUES ('$user_id', '$fam_code', '$emergency_contact', '$relation');";
-      mysqli_query($conn, $sql);
+      header('Location: decline_access.php');
     }
   ?>
 <a href="./index.php">Cancel</a>
