@@ -32,7 +32,7 @@
     echo
     "
     <form method='post'>
-      <input type='date' name='date' placeholder='Todays Date' required>
+      <input type='date' name='roster_date' placeholder='Todays Date' required>
       <label for='select_supervisor'>Choose Supervisor</label>
       <select name='select_supervisor' required>
     ";
@@ -130,6 +130,7 @@
       ";
 
       if(isset($_POST['create_roster'])) {
+        $roster_date = $_POST['roster_date'];
         $supervisor_id = $_POST['select_supervisor'];
         $doctor_id = $_POST['select_doctor'];
         $caregiver_1_id = $_POST['caregiver_1'];
@@ -141,7 +142,7 @@
         $caregiver_4_id = $_POST['caregiver_4'];
         $group_id_4 = $_POST['group_4'];
 
-        $sql = "INSERT INTO `rosters` (supervisor_id, doctor_id, care_giver_1, patient_group_1, care_giver_2, patient_group_2, care_giver_3, patient_group_3, care_giver_4, patient_group_4) VALUES ( '$supervisor_id','$doctor_id','$caregiver_1_id','$group_id_1','$caregiver_2_id','$group_id_2','$caregiver_3_id','$group_id_3','$caregiver_4_id','$group_id_4');";
+        $sql = "INSERT INTO `rosters` (roster_date, supervisor_id, doctor_id, care_giver_1, patient_group_1, care_giver_2, patient_group_2, care_giver_3, patient_group_3, care_giver_4, patient_group_4) VALUES ('$roster_date','$supervisor_id','$doctor_id','$caregiver_1_id','$group_id_1','$caregiver_2_id','$group_id_2','$caregiver_3_id','$group_id_3','$caregiver_4_id','$group_id_4');";
         mysqli_query($conn, $sql);
         echo "<p>Sucessfully Created Roster!</p>";
       }

@@ -42,6 +42,7 @@ CREATE TABLE employees (
 );
 
 CREATE TABLE rosters (
+    roster_date date PRIMARY KEY,
     supervisor_id varchar(25) REFERENCES users(user_id),
     doctor_id varchar(25) REFERENCES users(user_id),
     care_giver_1 varchar(25) REFERENCES users(user_id),

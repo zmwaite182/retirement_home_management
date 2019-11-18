@@ -79,7 +79,7 @@
         $sql = "INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('$user_id', '$f_name', '$l_name', '$role');";
         mysqli_query($conn, $sql);
       }
-      header('Location: decline_access.php');
+      header('Location: index.php');
     }
   ?>
 <a href="./index.php">Cancel</a>
