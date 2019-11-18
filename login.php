@@ -38,10 +38,14 @@
             if ($correct_password == null) {
                 echo '<p>Incorrect Email</p>';
             } elseif ($password == password_verify($password, $correct_password)) {
+              if ($reg_approval != 1) {
+                echo '<p>User not approved</p>';
+              } else {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['job'] = $job;
                 header('Location: index.php');
                 exit();
+              }
             } else {
                 echo '<p>Incorrect Password</p>';
             }
