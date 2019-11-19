@@ -25,10 +25,6 @@
         $search_e = $_POST['search_e'];
         $get_employee_details = "SELECT * FROM users u JOIN employees e ON u.user_id = e.user_id WHERE u.job <> 'patient' AND u.job <> 'family_member' AND e.salary = '$search_e';";
         $employee_details= mysqli_query($conn, $get_employee_details);
-    } elseif (isset($_POST['search_employees_6'])) {
-        $search_e = $_POST['search_e'];
-        $get_employee_details = "SELECT * FROM users u JOIN employees e ON u.user_id = e.user_id WHERE u.job <> 'patient' AND u.job <> 'family_member' AND u.group_id = '$search_e';";
-        $employee_details= mysqli_query($conn, $get_employee_details);
     }
 
     echo "
@@ -43,7 +39,6 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Salary</th>
-                <th>Group</th>
             </tr>
             <tr>
                 <td>
@@ -76,12 +71,6 @@
                         <input type='submit' name='search_employees_5' value='Go'>
                     </form>
                 </td>
-                <td>
-                    <form method='post'>
-                        <input type='text' name='search_e'>
-                        <input type='submit' name='search_employees_6' value='Go'>
-                    </form>
-                </td>
             </tr>
     ";
     while($row = mysqli_fetch_assoc($employee_details)) {
@@ -92,7 +81,6 @@
                 <td>".$row['f_name']."</td>
                 <td>".$row['l_name']."</td>
                 <td>".$row['salary']."</td>
-                <td>".$row['group_id']."</td>
             </tr>
             ";
     }

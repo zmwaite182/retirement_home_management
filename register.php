@@ -77,7 +77,7 @@
         mysqli_query($conn, $sql);
 
       } elseif ($role != "patient" || $role != "family_member") {
-        $sql = "INSERT INTO `employees` (user_id, f_name, l_name, job) VALUES ('$user_id', '$f_name', '$l_name', '$role');";
+        $sql = "INSERT INTO `employees` (user_id) VALUES ('$user_id');";
         mysqli_query($conn, $sql);
       }
       header('Location: index.php');
