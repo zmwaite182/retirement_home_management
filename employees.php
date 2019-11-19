@@ -84,5 +84,28 @@
             </tr>
             ";
     }
-    echo "</table>";
+    echo "</table>
+          <form method='post'>
+              <label for='get_employee_id'>Employee ID:</label>
+              <input type='number' name='emp_id' required>
+              <label for='new_salary'>New Salary</label>
+              <input type='number' name='new_salary' required>
+              <input type='submit' name='update_salary' value='Update Salary'>
+          </form>
+         ";
+    if (isset($_POST['update_salary'])) {
+      $user_id = $_POST['emp_id'];
+      $new_salary = $_POST['new_salary'];
+      $check_id = "SELECT * FROM `employees` WHERE user_id = '$user_id';";
+      $list_of_ids = mysqli_query($conn, $check_id);
+      $resultCheck = mysqli_num_rows($list_of_ids);
+      if($resultCheck>0) {
+        $sql = "UPDATE `employees` SET salary = '$new_salary' WHERE user_id = '$user_id';";
+        mysqli_query($conn, $sql);
+        echo "<p>Salary Sucessfully Updated!</p>
+        <a href='employees.php'>Refresh List</a>";
+      } else {
+        echo "<p>No employee with that ID exists</p>";
+      }
+    }
 ?>
