@@ -36,20 +36,31 @@
     echo "</table>
     <form method='post'>
         <label for='new role'>Add Role:</label>
-        <input type='text' name='add_role'>
+        <input type='text' name='add_role' required>
         <label for='access_level'>Access Level:</label>
-        <input type='number' name='access_level'>
+        <input type='number' name='access_level' required>
         <input type='submit' name='new_role' value='Insert'>
     </form>
     ";
 
     if (isset($_POST['new_role'])) {
+      $check_role = 0;
       $new_job = $_POST['add_role'];
-      $new_access_lvl = $_POST['access_level'];
-
-      $sql = "INSERT INTO `roles` (job, access_level) VALUES ('$new_job', '$new_access_lvl');";
-      mysqli_query($conn, $sql);
-      echo "<p>Role Sucessfully Added!</p>";
+      $get_roles = "SELECT * FROM `roles`;";
+      $list_of_roles = mysqli_query($conn, $get_roles);
+      while($row = mysqli_fetch_assoc($list_of_roles)) {
+        if ($row['job'] == $new_job) {
+          $check_role += 1;
+        }
+      }
+      if ($check_role > 0){
+        echo "<p>Role Already Exists</p>";
+      } else {
+        $new_access_lvl = $_POST['access_level'];
+        $sql = "INSERT INTO `roles` (job, access_level) VALUES ('$new_job', '$new_access_lvl');";
+        mysqli_query($conn, $sql);
+        echo "<p>Role Sucessfully Added!</p>";
+      }
     }
   }
  ?>
