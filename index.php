@@ -33,6 +33,7 @@
     echo "<a href='roster.php'>Create Roster</a>";
     echo "<a href='reg_approval.php'>Registration Approval</a>";
     echo "<a href='./view_roster.php'>View Roster</a>";
+    echo "<a href='./add_role.php'>Add Role</a>";
 
 
   } elseif ($_SESSION['job'] == 'doctor') {
