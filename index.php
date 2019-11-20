@@ -35,7 +35,7 @@
     echo "<a href='./view_roster.php'>View Roster</a>";
     echo "<a href='./add_role.php'>Add Role</a>";
     echo "<a href='./create_doctor_app.php'>Create Doctors Appointment</a>";
-
+    echo "<a href='./assign_patients.php'>Assign Patients</a>";
 
   } elseif ($_SESSION['job'] == 'doctor') {
     echo "<a href='./view_roster.php'>View Roster</a>";
