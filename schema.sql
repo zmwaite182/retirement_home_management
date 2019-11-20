@@ -50,13 +50,13 @@ CREATE TABLE rosters (
 );
 
 CREATE TABLE appointments (
-    patient_id integer REFERENCES patients(patient_id),
+    patient_user_id integer REFERENCES users(user_id),
     app_date date,
     comment varchar(100),
     morning_med varchar(25),
     afternoon_med varchar(25),
     night_med varchar(25),
-    doctor_id integer REFERENCES employees(employee_id),
+    doctor_id integer REFERENCES users(user_id),
     confirm_appt boolean
 );
 
