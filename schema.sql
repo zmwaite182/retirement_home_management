@@ -61,7 +61,7 @@ CREATE TABLE appointments (
 );
 
 CREATE TABLE activities (
-    patient_id integer REFERENCES patients(patient_id),
+    patient_id integer REFERENCES users(user_id),
     activity_date date,
     morning_med boolean,
     afternoon_med boolean,
@@ -73,6 +73,7 @@ CREATE TABLE activities (
 -- GET CAREGIVER ID FROM DATE IN ROSTER TABLE
 
 -- Passwords: admin = 'admin' care1-4 = 'c' doctor = 'd' supervisor = 's'
+-- patient1 = 'p1' patient2 = 'p2'
 INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('admin', 'Zane', 'Witman', 'ad@min', '717-666-6666', '$2y$10$WL.sbnzHlkoodv6hhUbD6ehKYZ3cggoyqKJTYA7DT5Bcazg.l4IHq', '2015-10-10', 1), ('caregiver', 'Zane', 'Witman', 'c@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Zyzz', 'Brah', 'c2@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Henry', 'Apple', 'c3@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('caregiver', 'Review', 'Brah', 'c4@c', '717-666-6666', '$2y$10$MCYQk24SbukOiEkmCbLn/.s2RE55DaGsxK.GjVR4CGfVy/1mEJ1Aq', '2015-10-10', 2), ('doctor', 'Dr.Ya', 'Motha', 'd@d', '717-666-6666', '$2y$10$HpsaYH7/4O0s/OYTYaxhE.hMewdb3OUixiKecbMIKyevyrjnlu1Be', '2015-10-10', 2), ('supervisor', 'Mary', 'Evil', 's@s', '717-666-6666', '$2y$10$mmXJleIvQ2MNHs2ceN53nO80Ewh4r9OcvvtEpa0nlgMF.mdMVV0S2', '2015-10-10', 2), ('patient', 'Patient', '1', 'p@1', '1111111111', '$2y$10$07mXBu5ee9DfvvR6MRr74.jwR1VghGDaOZnW39oPgqbz52fFcqpSG', '2013-03-26', 2), ('patient', 'Patient', '2', 'p@2', '2222222222', '$2y$10$TtSkWlXDNZtVwkiw86txsODt0pvGGI3ngCLIli/PoN83cQ.e/DGPO', '2004-11-11', 2);
 INSERT INTO `employees` (user_id) VALUES ('1'), ('2'), ('3'), ('4'), ('5'), ('6'), ('7');
 INSERT INTO `patients` (user_id, family_code, emergency_contact, relation_ec) VALUES ('8', 123, 'Regina', 'Mom'), ('9', 321, 'Richard', 'Dad');

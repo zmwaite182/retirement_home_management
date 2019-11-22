@@ -26,6 +26,7 @@
 
   } elseif ($_SESSION['job'] == 'patient') {
     echo "<a href='./view_roster.php'>View Roster</a>";
+    echo "<a href='./patient_home.php'>Patient's Home</a>";
   } elseif ($_SESSION['job'] == 'admin') {
     echo "<h1>Admin's Home</h1>";
     echo "<a href='./patients.php'>View patients</a>";
