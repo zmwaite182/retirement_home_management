@@ -13,11 +13,7 @@
   if (!isset($_SESSION['job'])) {
     header('Location: decline_access.php');
     exit();
-  } elseif ($_SESSION['job'] != 'patient') {
-    header('Location: decline_access.php');
-    exit();
-  } else {
-
+  } elseif ($_SESSION['job'] == 'patient') {
     $current_date = date('Y-m-d');
     $current_id = $_SESSION['user_id'];
     $get_patient_details = "SELECT * FROM `users` WHERE user_id = '$current_id';";
@@ -154,6 +150,31 @@
           </tr>
         </table>
       ";
+  } elseif ($_SESSION['job'] == 'family_member') {
+      $current_date = date('Y-m-d');
+      $current_id = $_SESSION['user_id'];
+      echo "
+        <h1>Family Member's Home</h1>
+        <a href='./index.php'>Go Back</a>
+        <p>Todays date: ".$current_date."</p>
+        <form method='post'>
+            <input type='number' name='search_fam_code' required>
+            <input type='submit' name='search_f_home' value='Search Family Code'>
+        </form>";
+      if (isset($_POST['search_f_home'])) {
+        $fam_code = $_POST['search_fam_code'];
+        $get_pat_info = "SELECT * FROM `patients` where family_code = '$fam_code';"
+        $pat_info = mysqli_query($conn, $get_pat_info;
+        while($row = mysqli_fetch_assoc($pat_info) {
+          $pat_id = $row['user_id'];
+          
+        }
+      }
+        // <p>Patient ID: ".$current_id."</p>
+        // <p>Todays date: ".$current_date."</p>
+  } else {
+    header('Location: decline_access.php');
+    exit();
   }
   ?>
   </body>
