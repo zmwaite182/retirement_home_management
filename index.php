@@ -76,7 +76,7 @@
     }
 
     echo "
-        <h1>Patients</h1>
+        <h1>All Appointments</h1>
         <a href='./index.php'>View All</a>
 
         <table>
@@ -150,17 +150,17 @@
     echo "</table>";
 
     $current_date = date('Y-m-d');
-    $get_appointments = "SELECT u.f_name, u.l_name, a.app_date FROM users u JOIN appointments a ON u.user_id = a.patient_user_id WHERE doctor_id = '$doctor_id' AND app_date = '$current_date';";
+    $get_appointments = "SELECT u.f_name, u.l_name, a.app_date, u.user_id FROM users u JOIN appointments a ON u.user_id = a.patient_user_id WHERE doctor_id = '$doctor_id' AND app_date = '$current_date';";
     $appointments_list= mysqli_query($conn, $get_appointments);
 
     if (isset($_POST['till_date'])) {
       $till_date = $_POST['date'];
-      $get_appointments = "SELECT u.f_name, u.l_name, a.app_date FROM users u JOIN appointments a ON u.user_id = a.patient_user_id WHERE doctor_id = '$doctor_id' AND app_date >= '$current_date' AND app_date <= '$till_date';";
+      $get_appointments = "SELECT u.f_name, u.l_name, a.app_date, u.user_id FROM users u JOIN appointments a ON u.user_id = a.patient_user_id WHERE doctor_id = '$doctor_id' AND app_date >= '$current_date' AND app_date <= '$till_date';";
       $appointments_list= mysqli_query($conn, $get_appointments);
     }
 
     echo "
-      <h2>Appointments</h2>
+      <h2>Upcoming Appointments</h2>
       <form method='post'>
         <input type='date' name='date'>
         <input type='submit' name='till_date' value='Until Date'>
@@ -175,7 +175,7 @@
     while($each = mysqli_fetch_assoc($appointments_list)) {
       echo "
         <tr>
-          <td>".$each['f_name']." ".$each['l_name']."</td>
+          <td><a href='appointments.php?patient_id=".$each['user_id']."'>".$each['f_name']." ".$each['l_name']."</a></td>
           <td>".$each['app_date']."</td>
         </tr>
       ";

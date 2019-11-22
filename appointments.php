@@ -12,14 +12,15 @@
 </head>
 <body>
     <?php
-        // Change these to dynamic
-        // $doctor_id = 6;
-        // $patient_id = 8;
+        $doctor_id = $_SESSION['user_id'];
+        $patient_id = $_GET['patient_id'];
         $current_date = date('Y-m-d');
-        $get_appointments = "SELECT u.f_name, u.l_name, a.app_date, a.comment, a.morning_med, a.afternoon_med, a.night_med FROM users u JOIN appointments a ON u.user_id = a.patient_user_id WHERE a.doctor_id = '$doctor_id' AND a.patient_user_id = '$patient_id';";
-        $appointments_list= mysqli_query($conn, $get_appointments);    
+        $get_appointments = "SELECT u.f_name, u.l_name, a.app_date, a.comment, a.morning_med, a.afternoon_med, a.night_med, a.confirm_appt FROM users u JOIN appointments a ON u.user_id = a.patient_user_id WHERE a.doctor_id = '$doctor_id' AND a.patient_user_id = '$patient_id';";
+        $appointments_list= mysqli_query($conn, $get_appointments);  
+        $row = mysqli_fetch_assoc($appointments_list);
 
         echo "
+            <h1>".$row['f_name']." ".$row['l_name']." Appointments</h1>
             <a href='./index.php'>Go Back</a>
             <table>
                 <tr>
@@ -34,6 +35,7 @@
         while($row = mysqli_fetch_assoc($appointments_list)) {
             if ($row['app_date'] == $current_date) {
                 $today = true;
+                $had_appt = $row['confirm_appt'];
             }
             echo "
               <tr>
@@ -47,7 +49,7 @@
           }
         echo "</table>";
 
-        if ($today) {
+        if ($today && !$had_appt) {
             echo"
                 <h2>Add Prescription</h2>
                 <form method='post'>
@@ -70,7 +72,7 @@
             $afternoon_med = $_POST['afternoon_med'];
             $night_med = $_POST['night_med'];
       
-            $sql = "UPDATE appointments SET comment='$comment', morning_med='$morning_med', afternoon_med='$afternoon_med', night_med='$night_med' WHERE app_date='$current_date' AND patient_user_id=$patient_id AND doctor_id=$doctor_id;";
+            $sql = "UPDATE appointments SET comment='$comment', morning_med='$morning_med', afternoon_med='$afternoon_med', night_med='$night_med' WHERE app_date='$current_date' AND patient_user_id=$patient_id AND doctor_id=$doctor_id AND confirm_appt=1;";
             mysqli_query($conn, $sql);
         }
 
