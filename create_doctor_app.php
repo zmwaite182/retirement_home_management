@@ -67,3 +67,6 @@
           echo "<p>Appointment Sucessfully Created!</p>";
       }
     }
+    ?>
+  </body>
+</html>

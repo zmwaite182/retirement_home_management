@@ -22,10 +22,13 @@
           </form>
       ";
   } elseif ($_SESSION['job'] == 'family_member') {
-    echo "<a href='./view_roster.php'>View Roster</a>";
+    header('Location: patient_home.php');
+    exit();
 
   } elseif ($_SESSION['job'] == 'patient') {
-    echo "<a href='./view_roster.php'>View Roster</a>";
+    header('Location: patient_home.php');
+    exit();
+    
   } elseif ($_SESSION['job'] == 'admin') {
     echo "<h1>Admin's Home</h1>";
     echo "<a href='./patients.php'>View patients</a>";
