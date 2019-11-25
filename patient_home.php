@@ -13,28 +13,69 @@
   if (!isset($_SESSION['job'])) {
     header('Location: decline_access.php');
     exit();
-  } elseif ($_SESSION['job'] == 'patient') {
-    $current_date = date('Y-m-d');
-    $current_id = $_SESSION['user_id'];
-    $get_patient_details = "SELECT * FROM `users` WHERE user_id = '$current_id';";
-    $patient_details = mysqli_query($conn, $get_patient_details);
-    $row = mysqli_fetch_assoc($patient_details);
+  } elseif ($_SESSION['job'] == 'patient' || $_SESSION['job'] == 'family_member') {
 
-    echo "
-      <h1>Patient's Home</h1>
-      <a href='./index.php'>Go Back</a>
-      <h2>Welcome ".$row['f_name']." ".$row['l_name'].".</h2>
-      <p>Patient ID: ".$current_id."</p>
-      <p>Todays date: ".$current_date."</p>
-      <form method='post'>
-          <input type='date' name='search_date' required>
-          <input type='submit' name='search_p_home' value='Search'>
-      </form>";
+      if ($_SESSION['job'] == 'patient'){
+        $current_id = $_SESSION['user_id'];
+        $current_date = date('Y-m-d');
+        $get_patient_details = "SELECT * FROM `users` WHERE user_id = '$current_id';";
+        $patient_details = mysqli_query($conn, $get_patient_details);
+        $row = mysqli_fetch_assoc($patient_details);
+        echo "
+          <h1>Patient's Home</h1>
+          <a href='./view_roster.php'>View Roster</a>
+          <h2>Welcome ".$row['f_name']." ".$row['l_name'].".</h2>
+          <p>Patient ID: ".$current_id."</p>
+          <p>Todays date: ".$current_date."</p>
+          <form method='post'>
+              <input type='date' name='search_date' required>
+              <input type='submit' name='search_p_home' value='Search'>
+          </form>";
 
-    if (isset($_POST['search_p_home'])) {
-      $current_date = $_POST['search_date'];
-      echo "<a href='patient_home.php'>View Today</a>";
-    }
+        if (isset($_POST['search_p_home'])) {
+          $current_date = $_POST['search_date'];
+          echo "<a href='patient_home.php'>View Today</a>";
+        }
+
+      } elseif ($_SESSION['job'] == 'family_member'){
+        $current_date = date('Y-m-d');
+        $current_id = NULL;
+        echo "
+          <h1>Family Member's Home</h1>
+          <p>Todays date: ".$current_date."</p>
+          <form method='post'>
+              <input type='number' name='search_fam_code' required>
+              <input type='submit' name='search_f_home' value='Search Family Code'>
+          </form>";
+
+        if (isset($_POST['search_f_home'])) {
+          $fam_code = $_POST['search_fam_code'];
+          $get_pat_info = "SELECT * FROM `patients` where family_code = '$fam_code';";
+          $pat_info = mysqli_query($conn, $get_pat_info);
+          while($row = mysqli_fetch_assoc($pat_info)) {
+            $_SESSION['temp_id'] = $row['user_id'];
+            $group_id = $row['group_id'];
+            $current_id = $_SESSION['temp_id'];
+          }
+          echo "
+            <p>Patient ID: ".$current_id."</p>
+          ";
+          $get_patient_details = "SELECT * FROM `users` WHERE user_id = '$current_id';";
+          $patient_details = mysqli_query($conn, $get_patient_details);
+          $row = mysqli_fetch_assoc($patient_details);
+          echo "
+            <form method='post'>
+                <input type='date' name='search_f_date' required>
+                <input type='submit' name='search_fam' value='Search'>
+            </form>";
+        }
+        if (isset($_POST['search_fam'])) {
+          $current_date = $_POST['search_f_date'];
+          $current_id = $_SESSION['temp_id'];
+          echo "<p>Patient ID: ".$current_id."</p>
+          <a href='patient_home.php'>View Today</a>";
+        }
+      }
 
     $get_doc_app = "SELECT patient_user_id, app_date, doctor_id FROM `appointments` WHERE app_date = '$current_date' AND patient_user_id = '$current_id'";
     $doc_app_details = mysqli_query($conn, $get_doc_app);
@@ -149,29 +190,16 @@
             echo "
           </tr>
         </table>
-      ";
-  } elseif ($_SESSION['job'] == 'family_member') {
-      $current_date = date('Y-m-d');
-      $current_id = $_SESSION['user_id'];
-      echo "
-        <h1>Family Member's Home</h1>
-        <a href='./index.php'>Go Back</a>
-        <p>Todays date: ".$current_date."</p>
+
         <form method='post'>
-            <input type='number' name='search_fam_code' required>
-            <input type='submit' name='search_f_home' value='Search Family Code'>
-        </form>";
-      if (isset($_POST['search_f_home'])) {
-        $fam_code = $_POST['search_fam_code'];
-        $get_pat_info = "SELECT * FROM `patients` where family_code = '$fam_code';"
-        $pat_info = mysqli_query($conn, $get_pat_info;
-        while($row = mysqli_fetch_assoc($pat_info) {
-          $pat_id = $row['user_id'];
-          
-        }
-      }
-        // <p>Patient ID: ".$current_id."</p>
-        // <p>Todays date: ".$current_date."</p>
+          <input type='submit' name='logout' value='logout'>
+        </form>
+        ";
+           if (isset($_POST['logout'])) {
+             session_unset();
+             header('Location: index.php');
+             exit();
+           }
   } else {
     header('Location: decline_access.php');
     exit();
