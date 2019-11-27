@@ -61,7 +61,7 @@
 
           echo "
             <p>Patient ID: ".$current_id."</p>
-            <p>Patient ID: ".$patient_name."</p>
+            <p>Patient Name: ".$patient_name."</p>
           ";
           $get_patient_details = "SELECT * FROM `users` WHERE user_id = '$current_id';";
           $patient_details = mysqli_query($conn, $get_patient_details);
