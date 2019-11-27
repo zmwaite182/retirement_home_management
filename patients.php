@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   include_once 'db.php';
 
@@ -7,7 +7,7 @@
 
   if (isset($_POST['search_patients_1'])) {
     $search_p = $_POST['search_p'];
-    $get_patient_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient' AND u.user_id = '$search_e';";
+    $get_patient_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient' AND u.user_id = '$search_p';";
     $patient_details= mysqli_query($conn, $get_patient_details);
   } elseif (isset($_POST['search_patients_2'])) {
     $search_p = $_POST['search_p'];
