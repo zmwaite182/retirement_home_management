@@ -50,15 +50,18 @@
 
         if (isset($_POST['search_f_home'])) {
           $fam_code = $_POST['search_fam_code'];
-          $get_pat_info = "SELECT * FROM `patients` where family_code = '$fam_code';";
+          $get_pat_info = "SELECT * FROM patients p JOIN users u ON p.user_id=u.user_id WHERE family_code = '$fam_code';";
           $pat_info = mysqli_query($conn, $get_pat_info);
           while($row = mysqli_fetch_assoc($pat_info)) {
             $_SESSION['temp_id'] = $row['user_id'];
             $group_id = $row['group_id'];
+            $patient_name = $row['f_name']." ".$row['l_name'];
             $current_id = $_SESSION['temp_id'];
           }
+
           echo "
             <p>Patient ID: ".$current_id."</p>
+            <p>Patient ID: ".$patient_name."</p>
           ";
           $get_patient_details = "SELECT * FROM `users` WHERE user_id = '$current_id';";
           $patient_details = mysqli_query($conn, $get_patient_details);
