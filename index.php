@@ -28,7 +28,7 @@
   } elseif ($_SESSION['job'] == 'patient') {
     header('Location: patient_home.php');
     exit();
-    
+
   } elseif ($_SESSION['job'] == 'admin') {
     echo "<h1>Admin's Home</h1>";
     echo "<a href='./patients.php'>View patients</a>";
@@ -187,7 +187,8 @@
     echo "</table>";
 
   } elseif ($_SESSION['job'] == 'caregiver') {
-    echo "<a href='./view_roster.php'>View Roster</a>";
+    header('Location: care_giver_home.php');
+    exit();
 
   } elseif ($_SESSION['job'] == 'supervisor') {
     echo "<a href='roster.php'>Create Roster</a>";
