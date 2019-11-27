@@ -14,7 +14,7 @@
 <body>
 
   <form action="" method="post">
-    <select name="role_selection" onchange="checkPatient(this);">
+    <select name="role_selection" onchange="checkPatient(this);" required>
       <option value="none">Select Role</option>
       <option value="patient">Patient</option>
       <option value="family_member">Family Member</option>
@@ -23,12 +23,13 @@
       <option value="doctor">Doctor</option>
     </select>
 
-    <input type="text" name="f_name" placeholder="First Name">
-    <input type="text" name="l_name" placeholder="Last Name">
-    <input type="email" name="email" placeholder="Email">
-    <input type="tel" name="phone" placeholder="Phone Number">
-    <input type="text" name="password" placeholder="Password">
-    <input type="date" name="birth" placeholder="Date of Birth">
+    <input type="text" name="f_name" placeholder="First Name" required>
+    <input type="text" name="l_name" placeholder="Last Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <input type="text" name="password" placeholder="Password" required>
+    <label for='dob'>Enter Date of Birth:</label>
+    <input type="date" name="birth" placeholder="Date of Birth" required>
     <script>
         const checkPatient = (select) => {
             if (select.value == "patient") {
@@ -39,9 +40,9 @@
         }
     </script>
     <div id="patientInfo" style="display: none;">
-        <input type='text' name='fam_code' placeholder='Family Code'>
-        <input type='text' name='emergency_contact' placeholder='Emergency Contact'>
-        <input type='text' name='relation' placeholder='Relation to Contact'>
+        <input type='text' name='fam_code' placeholder='Family Code' required>
+        <input type='text' name='emergency_contact' placeholder='Emergency Contact' required>
+        <input type='text' name='relation' placeholder='Relation to Contact' required>
     </div>
 
     <input type="submit" name="create_acc" value="Submit"/>

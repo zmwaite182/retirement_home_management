@@ -30,8 +30,6 @@
     $gr3 = 0;
     $gr4 = 0;
 
-
-//EDIT THIS
     $get_cg_groups = "SELECT * FROM `rosters` WHERE roster_date = '$current_date';";
     $cg_groups = mysqli_query($conn, $get_cg_groups);
     while ($row = mysqli_fetch_assoc($cg_groups)) {
@@ -282,12 +280,13 @@
 
     if (isset($_POST['update_cg_home'])) {
       $current_date = date('Y-m-d');
+      echo "<a href= 'care_giver_home.php'>Refresh List</a>";
       foreach ($_POST as $key => $value) {
         $check_user = "SELECT * FROM `activities` WHERE patient_id = '$value' AND activity_date = '$current_date';";
         $user_valid = mysqli_query($conn, $check_user);
         $row = mysqli_fetch_assoc($user_valid);
 
-        if (mysqli_num_rows($user_valid) == 0) {
+        if (mysqli_num_rows($user_valid) == 0 && $value > 0) {
           $sql = "INSERT INTO `activities` (patient_id, activity_date) VALUES ('$value', '$current_date');";
           mysqli_query($conn, $sql);
         }
@@ -319,6 +318,16 @@
 
       }
     }
+    echo "
+          <form method='post'>
+            <input type='submit' name='logout' value='logout'>
+          </form>
+         ";
+         if (isset($_POST['logout'])) {
+           session_unset();
+           header('Location: index.php');
+           exit();
+         }
 
   } else {
     header('Location: decline_access.php');
