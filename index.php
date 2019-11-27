@@ -40,6 +40,7 @@
     echo "<a href='./create_doctor_app.php'>Create Doctors Appointment</a>";
     echo "<a href='./assign_patients.php'>Assign Patients</a>";
     echo "<a href='./report.php'>Admin's Report</a>";
+    echo "<a href='./payments.php'>Payments</a>";
 
   } elseif ($_SESSION['job'] == 'doctor') {
     header('Location: doctor_home.php');
