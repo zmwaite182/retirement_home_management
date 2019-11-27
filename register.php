@@ -13,16 +13,19 @@
 </head>
 <body>
 
-  <form action="" method="post">
-    <select name="role_selection" onchange="checkPatient(this);" required>
-      <option value="none">Select Role</option>
-      <option value="patient">Patient</option>
-      <option value="family_member">Family Member</option>
-      <option value="supervisor">Supervisor</option>
-      <option value="caregiver">Care Giver</option>
-      <option value="doctor">Doctor</option>
-    </select>
-
+<?php
+  $sql = "SELECT job FROM `roles`;";
+  $list_of_roles = mysqli_query($conn, $sql);
+  echo "
+  <form method='post'>";
+?>
+    <select name='role_selection' onchange='checkPatient(this);' required>
+<?php
+      while($row = mysqli_fetch_assoc($list_of_roles)) {
+        echo"<option value='".$row['job']."'>".$row['job']."</option>";
+      }
+?>
+</select>
     <input type="text" name="f_name" placeholder="First Name" required>
     <input type="text" name="l_name" placeholder="Last Name" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -40,9 +43,9 @@
         }
     </script>
     <div id="patientInfo" style="display: none;">
-        <input type='text' name='fam_code' placeholder='Family Code' required>
-        <input type='text' name='emergency_contact' placeholder='Emergency Contact' required>
-        <input type='text' name='relation' placeholder='Relation to Contact' required>
+        <input type='text' name='fam_code' placeholder='Family Code'>
+        <input type='text' name='emergency_contact' placeholder='Emergency Contact'>
+        <input type='text' name='relation' placeholder='Relation to Contact'>
     </div>
 
     <input type="submit" name="create_acc" value="Submit"/>
