@@ -82,7 +82,7 @@
                     <input type='text' name='afternoon_med'>                
                     <label for='night_med'>Night Medication</label>
                     <input type='text' name='night_med'>
-                    <input type='submit' name='add_prescription'>
+                    <input type='submit' name='add_prescription' value='Confirm Appointment'>
                 </form>
             ";
         }
