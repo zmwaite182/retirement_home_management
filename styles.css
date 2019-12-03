@@ -1,0 +1,24 @@
+html {
+  font-family: sans-serif;
+}
+
+
+/*tables*/
+table {
+width: 1000px;
+margin-left: auto;
+margin-right: auto;
+}
+
+table, tr{
+  border: 1px solid grey;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  text-align: center;
+}
+/*tables*/

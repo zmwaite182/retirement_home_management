@@ -1,7 +1,16 @@
 <?php
     session_start();
     include_once 'db.php';
-
+?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Employees</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+<?php
     $get_employee_details = "SELECT * FROM users u JOIN employees e ON u.user_id = e.user_id WHERE u.job <> 'patient' and u.job <> 'family_member'";
     $employee_details= mysqli_query($conn, $get_employee_details);
 
@@ -109,3 +118,5 @@
       }
     }
 ?>
+</body>
+</html>
