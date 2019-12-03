@@ -7,6 +7,7 @@
   <head>
     <meta charset="utf-8">
     <title>Care Giver's Home</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
 <?php
