@@ -8,6 +8,7 @@ include_once 'db.php';
   <head>
     <meta charset="utf-8">
     <title>View Roster</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
 
