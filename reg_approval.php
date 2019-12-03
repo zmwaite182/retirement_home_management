@@ -7,7 +7,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Registration Approval</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <table>

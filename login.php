@@ -7,18 +7,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <form method="post">
-        <label for="email">Email</label>
-        <input type="text" name="email" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <input type="submit" name="grant_access">
-    </form>
+    <div class='container'>
+        <form method="post" class='login_form'>
+            <label for="email">
+                Email <input type="text" name="email" required>
+            </label>
+            <label for="password">
+                Password <input type="password" name="password" required>
+            </label>
+            <input type="submit" name="grant_access">
+        </form>
+    </div>
 
     <?php
         if (isset($_POST['grant_access'])) {
@@ -52,6 +55,6 @@
         }
     ?>
 
-    <a href="./index.php">Cancel</a>
+    <a href="./index.php" class='go_back'>Go Back</a>
 </body>
 </html>

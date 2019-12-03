@@ -7,9 +7,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
@@ -17,7 +16,7 @@
   $sql = "SELECT job FROM `roles`;";
   $list_of_roles = mysqli_query($conn, $sql);
   echo "
-  <form method='post'>";
+  <form method='post' class='login_form'>";
 ?>
     <select name='role_selection' onchange='checkPatient(this);' required>
 <?php
@@ -87,7 +86,7 @@
       header('Location: index.php');
     }
   ?>
-<a href="./index.php">Cancel</a>
+<a href="./index.php" class='go_back'>Go Back</a>
 
 </body>
 </html>
