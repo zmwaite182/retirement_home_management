@@ -21,9 +21,21 @@ td {
   text-align: center;
 }
 
-/* BODY */
-body {
-    background-color: lightblue;
+a {
+  text-decoration: none;
+  background-color: lightblue;
+  color: black;
+  padding: 5px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  display: inline-block;
+}
+
+a:hover {
+  background-color: #5072D4;
+  color: white;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 /* HEADINGS */
@@ -37,13 +49,14 @@ h1 {
     text-align: center;
     width: 600px;
     margin: 0 auto;
+    margin-top: 10%;
 }
 
 .login_form input[type='submit'] {
     margin-top: 20px;
-    font-size: 3rem;
+    font-size: 25px;
     background-color: lightgray;
-    width: 500px;
+    width: 200px;
     border: 2px solid black;
 }
 
