@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-
+        <h1>Payments</h1>
         <?php
             $update_due = "UPDATE patients SET payment_due= payment_due+((CURDATE()-last_payment)*10), last_payment= CURDATE() WHERE last_payment < CURDATE();";
             $update= mysqli_query($conn, $update_due);

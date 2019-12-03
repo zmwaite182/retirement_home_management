@@ -17,10 +17,10 @@
       if (!isset($_SESSION['job'])) {
           echo "
             <div class='container'>
-              <form method='post' action='login.php' class='login_form'>
+              <form method='post' action='login.php' class='index_form'>
                   <input type='submit' name='login' value='Login'>
               </form>
-              <form method='post' action='register.php' class='login_form'>
+              <form method='post' action='register.php' class='index_form'>
                   <input type='submit' name='register' value='Register'>
               </form>
             </div>
@@ -61,8 +61,8 @@
 
       if (isset($_SESSION['job'])) {
         echo "
-              <form method='post'>
-                <input type='submit' name='logout' value='logout'>
+              <form method='post' class='index_form'>
+                <input type='submit' name='logout' value='Logout'>
               </form>
             ";
             if (isset($_POST['logout'])) {

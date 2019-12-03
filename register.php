@@ -16,38 +16,51 @@
   $sql = "SELECT job FROM `roles`;";
   $list_of_roles = mysqli_query($conn, $sql);
   echo "
-  <form method='post' class='login_form'>";
+  <form method='post'>";
 ?>
-    <select name='role_selection' onchange='checkPatient(this);' required>
-<?php
-      while($row = mysqli_fetch_assoc($list_of_roles)) {
-        echo"<option value='".$row['job']."'>".$row['job']."</option>";
-      }
-?>
-</select>
-    <input type="text" name="f_name" placeholder="First Name" required>
-    <input type="text" name="l_name" placeholder="Last Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="password" placeholder="Password" required>
-    <label for='dob'>Enter Date of Birth:</label>
-    <input type="date" name="birth" placeholder="Date of Birth" required>
-    <script>
-        const checkPatient = (select) => {
-            if (select.value == "patient") {
-                document.getElementById('patientInfo').style.display = "block";
-            } else {
-                document.getElementById('patientInfo').style.display = "none";
+  <label for="role_selection">
+    Select Role: <select name='role_selection' onchange='checkPatient(this);' required>
+      <?php
+            while($row = mysqli_fetch_assoc($list_of_roles)) {
+              echo"<option value='".$row['job']."'>".$row['job']."</option>";
             }
-        }
-    </script>
-    <div id="patientInfo" style="display: none;">
-        <input type='text' name='fam_code' placeholder='Family Code'>
-        <input type='text' name='emergency_contact' placeholder='Emergency Contact'>
-        <input type='text' name='relation' placeholder='Relation to Contact'>
-    </div>
+      ?>
+    </select>
+  </label>
+  <label for="f_name">
+    First Name: <input type="text" name="f_name" required>
+  </label>
+  <label for="l_name">
+    Last Name: <input type="text" name="l_name" required>
+  </label>
+  <label for="email">
+    Email: <input type="email" name="email" required>
+  </label>
+  <label for="phone">
+    Phone Number: <input type="rel" name="phone" required>
+  </label>
+  <label for="password">
+    Password: <input type="password" name="password" required>
+  </label>
+  <label for='dob'>
+    Enter Date of Birth: <input type="date" name="birth" placeholder="Date of Birth" required>
+  </label>
+  <script>
+      const checkPatient = (select) => {
+          if (select.value == "patient") {
+              document.getElementById('patientInfo').style.display = "block";
+          } else {
+              document.getElementById('patientInfo').style.display = "none";
+          }
+      }
+  </script>
+  <div id="patientInfo" style="display: none;">
+      <input type='text' name='fam_code' placeholder='Family Code'>
+      <input type='text' name='emergency_contact' placeholder='Emergency Contact'>
+      <input type='text' name='relation' placeholder='Relation to Contact'>
+  </div>
 
-    <input type="submit" name="create_acc" value="Submit"/>
+  <input type="submit" name="create_acc" value="Submit"/>
   </form>
 
   <?php

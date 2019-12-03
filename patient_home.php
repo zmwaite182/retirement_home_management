@@ -195,8 +195,8 @@
           </tr>
         </table>
 
-        <form method='post'>
-          <input type='submit' name='logout' value='logout'>
+        <form method='post' class='index_form'>
+          <input type='submit' name='logout' value='Logout'>
         </form>
         ";
            if (isset($_POST['logout'])) {

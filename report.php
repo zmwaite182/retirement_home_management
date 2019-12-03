@@ -16,8 +16,10 @@
         <a href='./index.php'>Go Back</a>
         <a href='./report.php'>View All</a>
 
-        <form method='post'>
-            <input type='date' name='search_roster'>
+        <form method='post' class='small_form'>
+        <label for='search_roster'>
+            Enter Date: <input type='date' name='search_roster'>
+        </label>
             <input type='submit' name='search_r' value='Search'>
         </form>
 
