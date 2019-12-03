@@ -22,8 +22,10 @@ include_once 'db.php';
     <a href='./index.php'>Go Back</a>
     <a href='./view_roster.php'>View Todays Roster</a>
 
-    <form method='post'>
-      <input type='date' name='search_roster'>
+    <form method='post' class='small_form'>
+      <label for='search_roster'>
+        Enter Date: <input type='date' name='search_roster'>
+      </label>
       <input type='submit' name='search_r' value='Search'>
     </form>
 

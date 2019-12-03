@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
     <body>
+        <h1>Assign Patients</h1>
         <?php
             if (!isset($_SESSION['job'])) {
                 header('Location: decline_access.php');
