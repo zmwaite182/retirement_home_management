@@ -85,6 +85,7 @@
                         </td>
                     </tr>
             ";
+
             while($row = mysqli_fetch_assoc($employee_details)) {
                 echo "
                     <tr>

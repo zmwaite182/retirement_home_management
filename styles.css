@@ -1,18 +1,38 @@
-/* BODY */
+html {
+  font-family: sans-serif;
+}
 
+/* TABLES */
+table {
+width: 1000px;
+margin-left: auto;
+margin-right: auto;
+}
+
+table, tr{
+  border: 1px solid grey;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  text-align: center;
+}
+
+/* BODY */
 body {
     background-color: lightblue;
 }
 
 /* HEADINGS */
-
 h1 {
     text-align: center;
     font-size: 4rem;
 }
 
 /* FORMS */
-
 .login_form {
     text-align: center;
     width: 600px;
@@ -36,10 +56,7 @@ h1 {
     width: 400px;
 }
 
-
-
 /* BUTTONS */
-
 .go_back {
     background-color: lightgray;
     text-decoration: none;
