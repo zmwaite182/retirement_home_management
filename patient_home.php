@@ -117,7 +117,7 @@
         $cg_id = $id['care_giver_3'];
 
       } elseif ($group_id['group_id'] == 4) {
-        $get_id = "SELECT care_giver_5 FROM `rosters` WHERE roster_date = '$current_date';";
+        $get_id = "SELECT care_giver_4 FROM `rosters` WHERE roster_date = '$current_date';";
         $get_cg_id = mysqli_query($conn, $get_id);
         $id = mysqli_fetch_assoc($get_cg_id);
         $cg_id = $id['care_giver_4'];
