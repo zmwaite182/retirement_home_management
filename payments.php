@@ -19,7 +19,7 @@
         
         <form method='post'>
             <label for="patient_id">Patient ID</label>
-            <input type="text" name="patient_id">
+            <input type="text" name="patient_id" required>
             <input type="submit" value="Check Patient" name="check_patient">
         </form>
 
@@ -44,11 +44,11 @@
         
         <form method="post">
             <label for="patient_id">Patient ID</label>
-            <input type="text" name="patient_id" value="<? echo $row['user_id'] ?? '' ?>">
+            <input type="text" name="patient_id" value="<? echo $row['user_id'] ?? '' ?>" readonly>
             <label for="total_due">Total Due</label>
             <input type="text" name="total_due" value=" <? echo $row['payment_due'] ?? '' ?>" readonly>
             <label for="new_payment">New Payment</label>
-            <input type="text" name="new_payment">
+            <input type="text" name="new_payment" required>
             <input type="submit" name="make_payment">
         </form>
         <p>$10 per day<br>$50 per appointment</p>

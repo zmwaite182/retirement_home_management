@@ -96,6 +96,11 @@ td form input[type="submit"] {
   font-size: unset;
 }
 
+input[name='make_payment'] {
+  display: block;
+  margin: 20px auto;
+}
+
 /* BUTTONS */
 .go_back {
     background-color: lightgray;
