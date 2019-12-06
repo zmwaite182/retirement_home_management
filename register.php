@@ -37,8 +37,9 @@
     Email: <input type="email" name="email" required>
   </label>
   <label for="phone">
-    Phone Number: <input type="rel" name="phone" required>
+    Phone Number: <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" required>
   </label>
+  <p>Format: 123-456-7890</p>
   <label for="password">
     Password: <input type="password" name="password" required>
   </label>

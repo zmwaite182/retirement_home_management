@@ -150,7 +150,7 @@
     echo "
       <h2>Upcoming Appointments</h2>
       <form method='post'>
-        <input type='date' name='date'>
+        <input type='date' name='date' required>
         <input type='submit' name='till_date' value='Until Date'>
       </form>
       <table>

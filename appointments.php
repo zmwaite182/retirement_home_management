@@ -50,6 +50,8 @@
                     <th>Night Med</th>
                 </tr>
         ";
+        
+        $today = false;
         while($row = mysqli_fetch_assoc($appointments_list)) {
             if ($row['app_date'] == $current_date) {
                 $today = true;
@@ -83,6 +85,10 @@
                     <input type='text' name='night_med'>
                     <input type='submit' name='add_prescription' value='Confirm Appointment'>
                 </form>
+            ";
+        } else {
+            echo"
+                <p>No appointment today</p>
             ";
         }
     ?>

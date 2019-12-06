@@ -63,9 +63,22 @@
           unset($_SESSION['selected_patient']);
           $app_date = $_POST['app_date'];
           $doc_id = $_POST['select_doctor'];
-          $sql = "INSERT INTO `appointments` (patient_user_id, app_date, doctor_id) VALUES ('$pat_id','$app_date','$doc_id');";
-          mysqli_query($conn, $sql);
-          echo "<p>Appointment Sucessfully Created!</p>";
+          $check_appointments = "SELECT app_date FROM `appointments` WHERE patient_user_id = $pat_id";
+          $appointment = mysqli_query($conn, $check_appointments);
+
+          $has_appt = false;
+          while($row = mysqli_fetch_assoc($appointment)) {
+            if ($app_date == $row['app_date']) {
+              $has_appt = true;
+            }  
+          }
+            if (!$has_appt) {
+              $sql = "INSERT INTO `appointments` (patient_user_id, app_date, doctor_id) VALUES ('$pat_id','$app_date','$doc_id');";
+              mysqli_query($conn, $sql);
+              echo "<p>Appointment Sucessfully Created!</p>";
+            } else {
+              echo "<p>Appointment Already Assigned</p>";     
+            }
       }
     }
     ?>
