@@ -46,7 +46,7 @@
           <p>Todays date: ".$current_date."</p>
           <form method='post'>
               <input type='number' name='search_fam_code' required>
-              <input type='submit' name='search_f_home' value='Search Family Code'>
+              <input type='submit' name='search_f_home' value='Search Family Code' class='long_sub'>
           </form>";
 
         if (isset($_POST['search_f_home'])) {

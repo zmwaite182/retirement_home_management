@@ -14,6 +14,11 @@
 
         <?php
 
+        if (!isset($_SESSION['job'])) {
+          header('Location: decline_access.php');
+          exit();
+        } elseif ($_SESSION['job'] == 'admin') {
+
             $get_employee_details = "SELECT * FROM users u JOIN employees e ON u.user_id = e.user_id WHERE u.job <> 'patient' and u.job <> 'family_member'";
             $employee_details= mysqli_query($conn, $get_employee_details);
 
@@ -121,6 +126,10 @@
                 echo "<p>No employee with that ID exists</p>";
             }
             }
+          } else {
+            header('Location: decline_access.php');
+            exit();
+          }
         ?>
     </body>
 </html>
