@@ -20,6 +20,7 @@
 ?>
   <label for="role_selection">
     Select Role: <select name='role_selection' onchange='checkPatient(this);' required>
+                  <option value="none">none</option>
       <?php
             while($row = mysqli_fetch_assoc($list_of_roles)) {
               echo"<option value='".$row['job']."'>".$row['job']."</option>";
@@ -74,29 +75,32 @@
       $hash_pass = password_hash($password, PASSWORD_DEFAULT);
       $birth = $_POST['birth'];
       $role = $_POST['role_selection'];
-
-      $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$hash_pass', '$birth', 2);";
-      mysqli_query($conn, $sql);
-
-      $get_id = "SELECT user_id FROM users WHERE email = '$email';";
-      $user_id= mysqli_query($conn, $get_id);
-      while($row = mysqli_fetch_assoc($user_id)) {
-          $_SESSION['user_id'] = $row['user_id'];
-      }
-      $user_id = $_SESSION['user_id'];
-
-      if ($role == "patient") {
-        $fam_code = $_POST['fam_code'];
-        $emergency_contact = $_POST['emergency_contact'];
-        $relation = $_POST['relation'];
-        $sql = "INSERT INTO `patients` (user_id, family_code, emergency_contact, relation_ec) VALUES ('$user_id', '$fam_code', '$emergency_contact', '$relation');";
+      if ($role == 'none') {
+        echo"<p>Please select a role</p>";
+      } else {
+        $sql = "INSERT INTO `users` (job, f_name, l_name, email, phone, user_password, dob, reg_approval) VALUES ('$role', '$f_name', '$l_name', '$email', '$phone', '$hash_pass', '$birth', 2);";
         mysqli_query($conn, $sql);
 
-      } elseif ($role != "patient" || $role != "family_member") {
-        $sql = "INSERT INTO `employees` (user_id) VALUES ('$user_id');";
-        mysqli_query($conn, $sql);
+        $get_id = "SELECT user_id FROM users WHERE email = '$email';";
+        $user_id= mysqli_query($conn, $get_id);
+        while($row = mysqli_fetch_assoc($user_id)) {
+            $_SESSION['user_id'] = $row['user_id'];
+        }
+        $user_id = $_SESSION['user_id'];
+
+        if ($role == "patient") {
+          $fam_code = $_POST['fam_code'];
+          $emergency_contact = $_POST['emergency_contact'];
+          $relation = $_POST['relation'];
+          $sql = "INSERT INTO `patients` (user_id, family_code, emergency_contact, relation_ec) VALUES ('$user_id', '$fam_code', '$emergency_contact', '$relation');";
+          mysqli_query($conn, $sql);
+
+        } elseif ($role != "patient" || $role != "family_member") {
+          $sql = "INSERT INTO `employees` (user_id) VALUES ('$user_id');";
+          mysqli_query($conn, $sql);
+        }
+        header('Location: index.php');
       }
-      header('Location: index.php');
     }
   ?>
 <a href="./index.php" class='go_back'>Go Back</a>

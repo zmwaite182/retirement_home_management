@@ -13,6 +13,10 @@
   <body>
 
     <?php
+      if (!isset($_SESSION['job'])) {
+        header('Location: decline_access.php');
+        exit();
+      } elseif ($_SESSION['job'] == 'admin') {
 
       $get_patient_details = "SELECT * FROM users u JOIN patients p ON u.user_id = p.user_id WHERE u.job = 'patient'";
       $patient_details= mysqli_query($conn, $get_patient_details);
@@ -120,6 +124,10 @@
           </tr>
         ";
       }
+    } else {
+      header('Location: decline_access.php');
+      exit();
+    }
     ?>
   </body>
 </html>

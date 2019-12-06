@@ -1,6 +1,11 @@
 <?php
   session_start();
   include_once 'db.php';
+
+  if (!isset($_SESSION['job'])) {
+    header('Location: decline_access.php');
+    exit();
+  } elseif ($_SESSION['job'] == 'admin') {
 ?>
 
 <!DOCTYPE html>
@@ -58,8 +63,12 @@
                     </tr>
                 ";
             }
+          } else {
+            header('Location: decline_access.php');
+            exit();
+          }
         ?>
     </table>
-    <a href="./index.php">Go Back</a>    
+    <a href="./index.php">Go Back</a>
 </body>
 </html>
